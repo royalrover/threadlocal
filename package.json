@@ -1,0 +1,44 @@
+{
+    "name": "@rockerjs/tls",
+    "version": "1.0.0",
+    "description": "A threadlocal storage for node.js",
+    "author": {
+        "name": "yangli",
+        "email": "yl.yuxiu@foxmail.com",
+        "url": "https://github.com/royalrover"
+    },
+    "scripts": {
+        "build": "npm run clean && tsc",
+        "clean": "rimraf ./dist",
+        "cover": "npm run build && deco dist/test && cd dist && istanbul cover _mocha -x src/errors/**/*.js -- --timeout 10000 --exit --reporter spec --recursive",
+        "dev": "npm run clean && tsc -w",
+        "lint": "tslint ./src/**/*.ts ./src/*.ts",
+        "prepublish": "npm run build",
+        "start": "tsc -w",
+        "test": "npm run build && deco dist/test"
+    },
+    "devDependencies": {
+        "@rockerjs/tsunit": "^1.0.0",
+        "@types/node": "^7.10.5",
+        "coveralls": "^2.13.0",
+        "istanbul": "^0.4.5",
+        "koa": "^2.7.0",
+        "rimraf": "^2.6.2",
+        "tslint": "^5.14.0",
+        "typescript": "^2.7.2"
+    },
+    "keywords": [
+        "tls",
+        "TLS",
+        "threadlocal",
+        "ThreadLocal",
+        "async context bound",
+        "ACB",
+        "acb"
+    ],
+    "license": "MIT",
+    "directories": {
+        "doc": "doc"
+    },
+    "main": "./dist/index.js"
+}
