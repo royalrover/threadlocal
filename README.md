@@ -78,20 +78,22 @@ let business = async function(ctx){
     Logger.info(`请求返回, path: ${ctx.url}`)
 };
 
-
 app.use(async(ctx, next)=>{
     await tls.run(async ()=>{
+        Logger.info("in first filter...");
         tls.setProp('traceId', Date.now())
         await business(ctx);
-        Logger.info("end of callback...");
+        Logger.info("end in first filter...");
     });
     await next();
 });
 
 app.use(async(ctx, next) => {
     await tls.run(async ()=>{
+        Logger.info("in last filter...");
         tls.setProp('traceId',123123)
-        Logger.info("last filter...");
+        await business(ctx);
+        Logger.info("end in last filter...");
     });
 });
 
